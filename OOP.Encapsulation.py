@@ -1,105 +1,9 @@
-#№ 1
-from random import *
-class CRM:
-    def __init__(self):
-        self.__abiturients = {}
-    def add(self, abiturient):
-        # получение СНИЛСа
-        number = abiturient.get_number()
-        # добавление абитуриента в словарь,
-        # где информация хранится под СНИЛСами
-        self.__abiturients[number] = abiturient
-    def get_status(self,number):
-        #Проверяем проходит ли абитуриент по БВИ
-        if self.__abiturients[number].bvi:
-            return "Проходишь"
-        #Если нет БВИ, то гадаем из трёх вариантов
-        else:
-            options = ["Проходишь", "Не проходишь", "А фиг его знает"]
-            return choice(options)
-class Abiturient:
-    def __init__(self, name, surname, patronymic, age, number, bvi=False):
-        self.__name = name
-        self.__surname = surname
-        self.__patronymic = patronymic
-        self.__age = age
-        # СНИЛС
-        self.__number = number
-        # Russian National Exam (ЕГЭ), баллы
-        self.__RNE = self.__fetch_RNE()
-        # есть ли БВИ
-        self.__bvi = bvi
-    # функция получения результатов ЕГЭ
-    def __fetch_RNE(self):
-        return tuple(randint(0, 100) for _ in range(3))
-    # функция ответа на вопрос, проходит ли абитуриент
-    def __check(self):
-        if self.__bvi:
-            return "Да"
-        if random() > 0.95:
-            return "Да"
-        return "Нет"
-    #Геттер и сеттер для фамилии
-    @property
-    def surname(self):
-        return self.__surname
-    @surname.setter
-    def surname(self,surname):
-        self.__surname = surname
-    #Геттер и сеттер для имени
-    @property
-    def name(self):
-        return self.__name
-    @name.setter
-    def name(self, name):
-        self.__name = name
-    #Геттер и сеттер для псевдонима
-    @property
-    def patronymic(self):
-        return self.__patronymic
-    @patronymic.setter
-    def patronymic(self, patronymic):
-        self.__patronymic = patronymic
-    #Геттер и сеттер для имени
-    @property
-    def age(self):
-        return self.__age
-    @age.setter
-    def age(self,age):
-        self.__age = age
-    #Геттер и сеттер для результатов ЕГЭ
-    @property
-    def RNE(self):
-        return self.__RNE
-    @RNE.setter
-    def RNE(self,RNE):
-        self.__RNE = RNE
-    #Геттер и сеттер для БВИ
-    @property
-    def bvi(self):
-        return self.__bvi
-    @bvi.setter
-    def bvi(self,bvi):
-        self.__bvi = bvi
-    #Геттер для получения СНИЛСа
-    def get_number(self):
-        return self.__number
-
-
-module = CRM()
-# добавление АР-а в список абитуриентов
-module.add(Abiturient("Александр", "Вотяков", "Романович", 18, "111-222-333 00", True))
-# добавление РА в список абитуриентов
-module.add(Abiturient("Роман", "Вотяков", "Александрович", 18, "333-222-111 00"))
-# проверка, проходят ли абитуриенты
-print(module.get_status("111-222-333 00"))
-print(module.get_status("333-222-111 00"))
-
-#№ 2
+#Here I described the principle of the treasury from A.S. Pushkin's fairytale "The Tale of Tsar Saltan"
+#A fragment about a squirrel, golden shells and emeralds instead of kernels
+#All comments will be in Russian, as this is a Russian fairy tale.
 from random import *
 class RIP(Exception):
     pass
-
 #работаем с изумрудом
 class Emerald:
     statuses = ['Не учтён','учтён','отправлен под спуд']
@@ -281,7 +185,7 @@ class Entry:
     def __get_next_ID(self):
         return hash(self)
 
-
+#Тут я покажу принцип работы данной схемы на примере
 archive = Archive()
 for _ in range(20):
     shell = Shell()
